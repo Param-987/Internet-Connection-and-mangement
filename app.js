@@ -7,8 +7,11 @@ const mysql = require('mysql')
 const cors = require('cors');
 const connection = require('./db_service')  // database connection
 const  http = require('http');
+const methodOverride = require('method-override')
 const path = require('path');
+const login = require('./login')
 const admin = require('./admin') // for adding a new admin 
+const modem = require('./router') // for adding a new admin 
 const ip = require('./ip_address')  // for Ip address
 const speed = require('./speed')  // for internet speed test  
 app.set('view engine', 'ejs');
@@ -30,8 +33,10 @@ app.use(express.json())
 app.use(express.urlencoded({extended:false}))
 app.use(express.static('./public'))
 app.use('/admin',admin)  // use admin router
+app.use('/modem',modem)  // use modem router
 app.use('/api/ip',ip)   // use ip router
 app.use('/api/speed',speed)  // use speed router
+app.use('/login',login)
 
 // 
  
@@ -41,33 +46,16 @@ app.get('/ses',(req,res)=>{
 })
 
 
-app.post('/login',(req,res)=>{
-  const {email,password }= req.body;
-     connection.query("SELECT * FROM users", function (err, result, fields) {
-      if (err) throw err;
-      var x = result.find((user)=>{
-        return user.emailid === email && user.password === password;
-      })
-      if(x) return res.redirect('/user.html');
-      connection.query("SELECT * FROM admin", function (err, result, fields) {
-        if (err) throw err;
-        var y = result.find((admin)=>{
-          return admin.emailid === email && admin.password === password;
-        })
-        if(y) return res.redirect('/admin.html');
-        else return res.redirect('/login.html')
-
-      })
 
 
-  });
+
 
   // res.send('got ur response')
   // res.send(req.session);
   // const {userId} = req.session
   // console.log(userId);
 
-})
+
 
 
 

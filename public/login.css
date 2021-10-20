@@ -3,15 +3,11 @@
         background: url('../photos/login.jfif') no-repeat;
         background-size: 100%;
 }
-.admin,.student{
-    height: 150px;
-    width: 150px;
-    cursor: pointer;
-}
 
  .codehim-form{
-        max-width: 500px;
-        min-height: 400px;
+
+        max-width: 35%;
+        min-height: 60% ;
         box-sizing: border-box;
         background: #F6F6F6;
         opacity: .8;
@@ -31,11 +27,6 @@
         border-radius: 20px;
         border: 1px solid #ccc;        
     }
-img{
-    height: 90px;
-    width: 130px;
-    padding: 10px;
-}
     .cm-input:focus{
         outline: 0;
         border-color: #f9cb81;
