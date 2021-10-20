@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:ital,wght@1,300&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Raleway:ital,wght@1,300&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <title>Job Application form</title>
+    <style>
+        body{
+     background-image: url(./photos/ass3.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+        }
+
+    </style>
+    <link rel="stylesheet" href="./routerform.css">
+    <script src="./routerform.js"></script>
+</head>
+
+<body>
+
+    <div class="outer">
+        <div class="heading">
+            <h1>Add a new admin </h1>
+        </div>
+        <hr>
+        <form action="/admin" method="post">
+            <div class="form">
+                <div class="element"><label for="fname">Name:<input type="text" name="fname" id="fname" required
+                            placeholder="Full Name" size="30px"></label></div>
+
+                <div class="element"><label for="email">Email id:<input type="email" id="email" name="email"
+                            placeholder="Email" required size="30px"></label></div>
+
+                <div class="element"><label for="password">Password to login:<input type="password" id="password"
+                            placeholder="Password" name="pass" required></label></div>
+
+                <div class="element"><label for="date">Date from become admin:<input type="date" id="date" name="date"
+                            required></label></div>
+
+                <div class="element"><label for="phone-no">Phone no:<input type="tel" id="phone-no"
+                            placeholder="Phone No" name="phone" required></label></div>
+
+                <div>
+                    <label for="" id="labeled">Departments under control:</label>
+                </div>
+                <div>
+                    <button type="submit" class="button">Submit</button>
+                </div>
+
+            </div>
+        </form>
+
+
+
+</body>
+
+</html>

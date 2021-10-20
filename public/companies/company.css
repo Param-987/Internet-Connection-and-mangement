@@ -1,0 +1,54 @@
+body {
+    background-color: #E8F0F2;
+    font-family: 'Merriweather';
+
+}
+div.main{ background-color:white;
+    border-radius:10px;
+    margin-left: 10%;
+    margin-top: 20px;
+    max-width: 80%;
+}
+.one{
+    display:flex;
+    flex-direction: row;
+}
+.idnet{
+    margin: 15px 5px 15px 15px ;
+    height: 60px;
+    width: 150px;
+    justify-content: center;
+}
+.sum{
+    text-align: center;
+    background-color: grey;
+    font-size: 20px;
+    padding: 10px;
+}
+table{
+    width: 100%;
+    border-collapse: collapse;
+}
+th,td {
+    padding: 8px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+    margin: -10px;
+  }
+  tr:nth-child(even) {background-color: #f2f2f2;}
+
+  .package th{
+      background-color:black;
+      color: white;
+  }
+  .paro{
+      margin-bottom: 0;
+  }
+  a{
+      text-decoration: none;
+      color: #290FBA;
+      margin: auto 5px;
+  }
+  p{
+      margin-bottom: 0;
+  }

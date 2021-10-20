@@ -1,0 +1,141 @@
+body{ background: url('./photos/back.jpg') no-repeat scroll ;
+    background-size: cover; margin: 0;
+    max-width: 100%;
+    overflow-x: hidden;
+}
+#desc{ color: #FDFCE5; position: absolute; top: 20%; right:5%; width: 350px; }
+#let{ background-color: #CD113B;  color: white; padding: 2px; }
+#nav{ margin: 15px 20px 0 5px;  font-size: 20px;  display: flex;  flex-flow: row wrap; }
+
+#nav div{  margin: 5px 25px; color: white; }
+#nav div:hover{
+    font-weight: bolder;
+    cursor: pointer;
+}
+blockquote {margin-left: 200px ; margin-top: -25px;}
+div#non:hover{cursor:default;}
+.arrow:hover .rot{ transform: rotate(180deg);}
+.rot{
+position: relative;
+top:2px; left:-1px;
+
+}
+
+hr{border: 1px 0 0 solid white ; margin-left: -40px;}
+
+
+#tooltip {
+    min-width: 150px;  
+    top:40px;
+    left: 34%;
+ }
+#guidetip{
+    width:300px; 
+    top:40px;
+    left:23.5%;
+}
+ .dropdown{
+    display: none;
+    position:absolute;
+    background-color: white;
+    color: #CD113B;
+    font-size: 16px;
+    border-radius: 5px;
+    
+ }
+  #guide:hover #guidetip{display: block;}
+  #tools:hover #tooltip { display: block;}
+
+
+
+  ul{list-style:none inside;} 
+  li{display: inline-block; color: #CD113B; margin-left:-20px; font-weight: bolder;}
+  a{text-decoration: none;}
+  li:hover{font-size: 18px;}
+  .gen{color:white;}
+
+  #sundar{
+      margin: 0;
+      z-index: 1;
+      width: 100%;
+      background-color: #2B2B2B;
+      position: relative;
+      top: 700px;
+      display: flex;   
+      flex-flow: row;
+      
+  }
+  #bg{
+      height: 500px;
+      width: 50%;
+  }
+  .text{letter-spacing: 2px;}
+
+  .slide{
+
+    vertical-align: middle;
+    text-align: center;
+    position: absolute;
+    max-width:600px;
+    color: white;
+    font-size: 30px;
+    top:100px;
+    margin-left: -150px;
+
+}
+
+  #out{
+    position: relative;
+    top:700px;
+    min-height: 350px;
+    min-width: 8000px;
+   background-color: #345B63;
+}
+.one{ left: 500px;}
+.two{ left: 2000px; }
+.three{ left: 3500px; }
+.four{ left: 5000px; }
+.five{ left: 6500px; }
+
+.btn{
+ position: relative;
+ top: 750px;
+}
+.magnet{
+    height: 100%;
+    width: 100%;
+    margin: 0;
+}
+.btn{padding: 0; width: 50px; height: 80px;
+position: relative;
+top: 500px;
+z-index: 3;
+left:5%
+}
+.goright{left:88%;}
+
+.spun{
+    background-color: #345B63; position: absolute; z-index: 5;
+    padding: auto;
+    position: relative;
+    top: 580px;
+    left: 580px;
+}
+.fuck{background-color: #9D9D9D;
+    width: 25px;
+    height: 5px;
+    display: inline-block;
+    margin:3px;
+}
+
+.foot{
+    background-color: #345B63;
+    margin-left:-800px;
+    margin-top: -5px;
+    display: flex;
+    justify-content: flex-start;
+    position: relative;
+    top: 600px;
+    left: 800px;
+}
+.foot a{font-size: 18px; margin:auto 12px; color: black;}

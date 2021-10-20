@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+  <title>Ip address</title>
+</head>
+<body>
+  <button id="getspeed">
+     get speed 
+  </button>
+  <p></p>
+  <script>
+
+   document.querySelector('#getspeed').addEventListener('click',()=>{
+     axios.get('http://localhost:1337/api/speed')
+     .then((resp)=>{
+       document.querySelector('p').innerHTML = `Internet Speed is ${resp.data.toFixed(3)} mbps`
+       console.log(resp);
+     }).catch((err)=>{
+       console.log(err);
+     })
+   })
+  </script>
+</body>
+</html>
