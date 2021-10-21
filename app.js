@@ -31,7 +31,7 @@ app.use(session({
 app.use(cors({origin:'*'}));
 app.use(express.json())
 app.use(express.urlencoded({extended:false}))
-app.use(express.static('./public'))
+app.use(express.static('public'))
 app.use('/admin',admin)  // use admin router
 app.use('/modem',modem)  // use modem router
 app.use('/api/ip',ip)   // use ip router
@@ -39,6 +39,11 @@ app.use('/api/speed',speed)  // use speed router
 app.use('/login',login)
 
 // 
+app.get('/admin/viewadmin',(req,res)=>{
+  res.render('viewadmin',{ email:'20bcs150@iiitdmj',fname:'param',phone:'9415',date:'2021-10-10'
+
+  })
+})
  
 app.get('/ses',(req,res)=>{
   console.log(__dirname);

@@ -10,11 +10,24 @@ const connection = require("./db_service");
 const { json } = require("body-parser");
 
 const router = express.Router();
-
+app.use(express.static('public'))
 app.use(cors({ origin: "*" }));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
+app.use(express.static('./public'))
+
+router.get('/viewadmin',(req,res)=>{
+  res.render('viewadmin',{ email:'20bcs150@iiitdmj',fname:'param',phone:'9415',date:'2021-10-10'
+
+  })
+})
+// router.get('/viewadmin.css',(req,res)=>{
+//   res.sendFile(path.join(__dirname,'public','viewadmin.css'))
+// })
+// router.get('/viewadmin.js',(req,res)=>{
+//   res.sendFile(path.join(__dirname,'public','viewadmin.js'))
+// })
 
 // getting the data of the admin
 router.get("/", (req, res) => {
@@ -64,6 +77,13 @@ router.post("/", function (req, res, next) {
     );
   }
 }); // completed added
+
+
+
+router.get('/edit/:id',(req,res)=>{
+  console.log(req.params.id);
+  res.send('gta vice city');
+})
 
 
 router.get('/delete/:email',(req,res)=>{

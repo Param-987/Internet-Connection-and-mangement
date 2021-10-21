@@ -15,9 +15,9 @@ app.use(express.json())
 app.use(express.urlencoded({extended:false}))
 
 
-
-
-
+router.get('/',(req,res)=>{
+  res.render('login')
+})
 
 router.post('/',(req,res)=>{
     const {email,password }= req.body;
@@ -32,7 +32,7 @@ router.post('/',(req,res)=>{
           var y = result.find((admin)=>{
             return admin.emailid === email && admin.password === password;
           })
-          if(y) return res.redirect('/admin.html');
+          if(y) return res.render('admin',{name:y.name});
           else return res.redirect('/login.html')
   
         })

@@ -6,29 +6,22 @@
     <link href="https://fonts.googleapis.com/css2?family=Merriweather:ital@1&display=swap" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css">
+    <link rel="stylesheet" href="./viewadmin.css">
     <script src="./viewadmin.js"></script>
 </head>
 <style>
-    body{
-        background-color:#C8C6C6;
-    }
-    div.top {
-        opacity: .8;
-        width: 80%;
-    }
-    a{
-        color: black;
-       
-    }
-    .icons{margin:auto 40px;}
-    i{ font-size: 20px;}
-    li{
-        margin: 5px auto;
-    }
+   
 </style>
 
 <body style="font-family: 'Merriweather', serif; margin-top: 50px;" >
-    
+    <div class="hide">
+        <form action="/edit" method="post">
+            <label for="email">Email ID:<input type="text" id="email" name="email" value='<%=email%>'></label>
+            <label for="name">Full Name:<input type="text" id="name" name="name" value='<%=fname%>'></label>
+            <label for="phone">Phone no:<input type="text" id="phone" name="phone" value='<%=phone%>'></label>
+            <label for="date">Date:<input type="date" id="date" name="date" value='<%=date%>'></label>
+        </form>
+    </div>
 
     <div class="top" style="margin: auto;">
         <h2>List of all admins are </h2>
