@@ -8,7 +8,7 @@ const cors = require('cors');
 const connection = require('./db_service')  // database connection
 const  http = require('http');
 const methodOverride = require('method-override')
-const path = require('path');
+const path = require('path'); 
 const login = require('./login')
 const admin = require('./admin') // for adding a new admin 
 const modem = require('./router') // for adding a new admin 
@@ -37,13 +37,6 @@ app.use('/modem',modem)  // use modem router
 app.use('/api/ip',ip)   // use ip router
 app.use('/api/speed',speed)  // use speed router
 app.use('/login',login)
-
-// 
-app.get('/admin/viewadmin',(req,res)=>{
-  res.render('viewadmin',{ email:'20bcs150@iiitdmj',fname:'param',phone:'9415',date:'2021-10-10'
-
-  })
-})
  
 app.get('/ses',(req,res)=>{
   console.log(__dirname);
