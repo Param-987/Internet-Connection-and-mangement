@@ -22,7 +22,6 @@ body {
 input:focus { background-color: #C2FFD9;}
 input ,p.asterik , select {margin:10px;}
 input,select,label{ font-size:18px ;}
-select{color: #999;}
 
 
 p {

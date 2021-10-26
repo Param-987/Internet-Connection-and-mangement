@@ -5,7 +5,7 @@
    <meta charset="UTF-8">
    <meta name="viewport" content="width=device-width, initial-scale=1.0">
    <title>Login</title>
-   <link rel="stylesheet" href="./login.css">
+   <link rel="stylesheet" href="/login.css">
    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css">
 </head>
 
@@ -16,16 +16,17 @@
          <div class="form-title">
             <h1 style="font-size: 40px; margin: 10px;">Sign in</h1>
          </div>
+
          <label for="email"><i class="fa fa-envelope"></i> Email:
-         <input type="email" required name="email" id="email" class="cm-input" placeholder="Email" title="Select Admin or User"
-             title="Select Admin or User"></label>
+               <input type="email" required name="email" id="email" class="cm-input" placeholder="Email">
+         </label>
+
          <label for="id_password"><i class="fa fa-lock"></i> Password:
-         <input id="id_password" required name="password" type="password" class="cm-input" placeholder="Password" 
-            title="Select Admin or User"></label>
+            <input id="id_password" required name="password" type="password" class="cm-input" placeholder="Password">
+      </label>
          <i class="far fa-eye" id="togglePassword"></i>
          <div class="form-action">
-            <a href="/" class="log"> <span id="forgot">Forgot Password </span>
-               <span> Signup</span></a> <br>
+            <a href="/login/signup" class="log"><span id="forgot"> Signup</span></a> <br>
             <button id="submit" type="submit" class="btn-login  gr-bg">Login</button> </div>
       </form>
    </div>
@@ -51,8 +52,6 @@
          // toggle the eye slash icon
          this.classList.toggle('fa-eye-slash');
       });
-
-      
    </script>
 
 </body>

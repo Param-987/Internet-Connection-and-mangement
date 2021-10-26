@@ -6,7 +6,7 @@ const axios = require('axios')
 const mysql = require('mysql')
 const cors = require('cors');
 const connection = require('./db_service')  // database connection
-const  http = require('http');
+const http = require('http');
 const methodOverride = require('method-override')
 const path = require('path'); 
 const login = require('./login')
@@ -14,9 +14,10 @@ const admin = require('./admin') // for adding a new admin
 const modem = require('./router') // for adding a new admin 
 const ip = require('./ip_address')  // for Ip address
 const speed = require('./speed')  // for internet speed test  
+const bbc = require('./bbc')  // for internet speed test  
 app.set('view engine', 'ejs');
 
-app.use(session({
+app.use(session ({
   name:"sid",
   secret:"key that will sign cookie",
   resave:false,
@@ -33,20 +34,16 @@ app.use(express.json())
 app.use(express.urlencoded({extended:false}))
 app.use(express.static('public'))
 app.use('/admin',admin)  // use admin router
-app.use('/modem',modem)  // use modem router
+app.use('/router',modem)  // use modem router
 app.use('/api/ip',ip)   // use ip router
 app.use('/api/speed',speed)  // use speed router
+app.use('/bbc',bbc)  // use speed router
 app.use('/login',login)
  
 app.get('/ses',(req,res)=>{
   console.log(__dirname);
   res.render('/success.html');
 })
-
-
-
-
-
 
   // res.send('got ur response')
   // res.send(req.session);

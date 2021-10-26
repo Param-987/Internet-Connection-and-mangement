@@ -15,6 +15,9 @@ app.use(express.json())
 app.use(express.urlencoded({extended:false}))
 app.use(express.static('./public'))
 
+router.get('/',(re,res)=>{
+    res.render('speed');
+})
 
 
 
@@ -33,7 +36,7 @@ let speedtest = new FastSpeedtest({
 });
 
 
-router.get('/',(req,res)=>{
+router.get('/get',(req,res)=>{
     speedtest.getSpeed().then(s => {  s=''+s;  res.send(s)
     }).catch(e => { console.error(e.message);
     });

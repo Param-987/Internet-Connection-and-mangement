@@ -15,12 +15,46 @@ app.use(express.json())
 app.use(express.urlencoded({extended:false}))
 
 router.get('/',(req,res)=>{
-  res.sendFile(path.join(__dirname,'public','routerform.html'))
+  res.render('viewrouter',{rname:'',rpassword:'',Mdate:'',dep:'',rs:'',rd:''})
+})
+
+router.get('/get',(req,res)=>{
+  connection.query("SELECT * FROM router", function (err, result, fields) {
+    if (err) throw err;
+    res.send(result)
+  });
+})
+
+router.get('/delete/:id',(req,res)=>{
+  connection.query(`DELETE FROM router WHERE rname = '${req.params.id}'`, function (err, result) {
+    if (err) throw err;
+    res.render('viewrouter',{rname:'',rpassword:'',Mdate:'',dep:'',rs:'',rd:''})
+  });
+})
+
+
+
+router.get('/routerform',(req,res)=>{res.render('routerform')})
+
+router.get('/edit/:id',(req,res)=>{
+  connection.query(`SELECT * FROM router WHERE rname = '${req.params.id}'`, function (err, result, fields) {
+    if (err) throw err;
+    res.send(result)
+  });
+  
+})
+
+router.post('/edit/update/:id',(req,res,next)=>{
+    connection.query(`UPDATE router SET rname = ?, rpassword = ? , malfunction_date = ?,dep_install = ?, rep_status = ? ,rep_date = ?  WHERE rname = ?`,
+    [req.body.rname,req.body.rpassword,req.body.Mdate,req.body.dep,req.body.rs,req.body.rd,req.params.id],
+     function (err, result) {
+      if (err) throw err;
+      res.render('viewrouter',{rname:'',rpassword:'',Mdate:'',dep:'',rs:'',rd:''})
+      
+  });
 })
 
 router.post('/', function(req, res, next) {
-    console.log(req.body);
-    
   var rname = req.body.rname;
   var password = req.body.pass;
   var date = req.body.date
@@ -32,7 +66,6 @@ router.post('/', function(req, res, next) {
     if (err) {
         res.send('U entered some wrong credentials ,probably router name entered is previously employed');
     }else { 
-        console.log('record inserted');
         res.send('Record added succesfully')
     }
   });

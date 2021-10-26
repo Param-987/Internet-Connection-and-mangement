@@ -18,19 +18,13 @@ app.use(express.urlencoded({ extended: false }));
 app.use(express.static('./public'))
 
 router.get('/viewadmin',(req,res)=>{
-  res.render('viewadmin',{ email:'20bcs150@iiitdmj',fname:'param',phone:'9415',date:'2021-10-10'
-
-  })
+  res.render('viewadmin',{ email:' ',fname:' ',phone:' '})
 })
-// router.get('/viewadmin.css',(req,res)=>{
-//   res.sendFile(path.join(__dirname,'public','viewadmin.css'))
-// })
-// router.get('/viewadmin.js',(req,res)=>{
-//   res.sendFile(path.join(__dirname,'public','viewadmin.js'))
-// })
+
+router.get('/adminform',(req,res)=>{res.render('adminform')})
 
 // getting the data of the admin
-router.get("/", (req, res) => {
+router.get("/",  (req, res) => {
   connection.query(`SELECT * FROM admin`, function (err, result, fields) {
     if (err) throw err;
     var res1 = result;
@@ -81,17 +75,30 @@ router.post("/", function (req, res, next) {
 
 
 router.get('/edit/:id',(req,res)=>{
-  console.log(req.params.id);
-  res.send('gta vice city');
+ connection.query(`SELECT * FROM admin where emailid = ? `,[req.params.id], function (err, result, fields) {
+    if(err) throw err;
+    res.send(result)
+  //   res.render('viewadmin',{email:result[0].emailid,fname:result[0].name,phone:result[0].phone_no,date:result[0].date_on
+  // })
+  })
+  // res.send('gat vict')
 })
+router.post('/edit/update/:id',(req,res,next)=>{
+  // console.log(req.body.email);
+  connection.query(`UPDATE admin SET emailid = ? ,name = ?, phone_no =?  WHERE emailid = ?`,
+  [req.body.email,req.body.name,req.body.phone,req.params.id], function (err, result) {
+    if (err) throw err;
+    res.render('viewadmin',{ email:' ',fname:' ',phone:' '})
 
+  });
+})
 
 router.get('/delete/:email',(req,res)=>{
   connection.query(`DELETE FROM admin WHERE emailid = '${(req.params.email)}'`, function (err, result) {
     if (err) throw err;
     connection.query(`DELETE FROM admin_dep WHERE email = '${(req.params.email)}'`, function (err, result) {
       if (err) throw err;
-    res.redirect('/viewadmin.html')
+    res.render('viewadmin',{ email:' ',fname:' ',phone:' '})
     });
   });
 })

@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:ital,wght@1,300&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Raleway:ital,wght@1,300&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <title>Job Application form</title>
+    <style>
+        body {
+            background-image: url(/photos/ass3.jpg);
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+    </style>
+    <link rel="stylesheet" href="/adminform.css">
+    <script src="/bbc.js"></script>
+</head>
+
+<body>
+
+    <div class="outer">
+        <div class="heading">
+            <h1>Get a Broadband Connection </h1>
+        </div>
+        <hr>
+        <form action="/bbc/buy" method="post">
+            <div class="form">
+                <div class="element"><label for="ispname">Choose Isps :</label>
+                <select name="isp" id="ispname">
+                </select></div>
+
+
+                <div class="element"> Select the package : 
+                    <input type="radio" id="package1" name="package" value='monthly' checked><label for="package1">Monthly</label>
+                    <input type="radio" id="package2" name="package" value="annual" ><label for="package2">Yearly</label>
+                </div>
+
+                <div class="element"><label for="dur">Select the duration :<input type="number" id="dur"
+                             name="dur" value="1" min="0" max="12"></label></div>
+
+                <div class="element"><label for="date">From when want the plan:<input type="date" id="date" name="date"
+                            required onfocus="func()" ></label></div>
+
+                <div class="element"><label for="cost">The cost will be :<input type='text' id="cost"
+                            name="cost"  readonly="readonly" ></label></div>
+                <div>
+                    <button type="submit" class="button">Get the Plan</button>
+                </div>
+ 
+                <p></p>
+            </div>
+        </form>
+
+
+
+</body>
+
+</html>

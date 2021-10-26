@@ -15,7 +15,7 @@
   <script>
 
    document.querySelector('#getip').addEventListener('click',()=>{
-     axios.get('http://localhost:1337/api/ip')
+     axios.get('http://localhost:1337/api/ip/get')
      .then((resp)=>{
        document.querySelector('p').innerHTML = `Ur system's Ip adress is ${resp.data}`
        console.log(resp.status);
