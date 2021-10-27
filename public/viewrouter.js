@@ -23,7 +23,7 @@ function display(res){
         res[x].malfunction_date ? Mdate = (res[x].malfunction_date).slice(0,10) : Mdate ='Not Any'
         if(Mdate !== 'Not Any'){
             malfunct =`<li>Repaired Status: <span>${ res[x].rep_status }</span></li>`
-            if(res[x].rep_status ==='Yes'){malfunct+=`<li>Repaired Date: <span>${ (res[x].rep_date).slice(0,10) }</span></li>`}
+            if(res[x].rep_status === 'Yes'){malfunct+=`<li>Repaired Date: <span>${ (res[x].rep_date).slice(0,10) }</span></li>`}
         }
         z += `<div>
         <ul>

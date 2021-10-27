@@ -32,7 +32,6 @@ router.get("/",  (req, res) => {
       if (err) throw err;
       var res2 = result;
       res.send({ res1, res2 });
-      // res.send({res1,res2})
     });
   });
 });
