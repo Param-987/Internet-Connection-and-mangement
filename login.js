@@ -32,6 +32,14 @@ router.get("/signup", (req, res) => {
   res.render("signup");
 });
 
+router.get('/logout',(req,res)=>{
+  res.clearCookie("email")
+  res.clearCookie("Auth")
+  res.clearCookie("control")
+  res.redirect('/index.html')
+})
+
+
 router.post("/signup", (req, res) => {
   const { full_name, email, rollno, password, description } = req.body;
   connection.query(
@@ -52,12 +60,13 @@ router.post("/", (req, res) => {
       return user.emailid === email && user.password === password;
     });
     if (x) {
-      cook(res,email, password);
-      return res.render("user",{
-        name:toTitleCase(x.uname),
-        email:x.emailid,
-        DOB:'20-03-2001',
-       desc:toTitleCase(x.description)
+      cook(res, email, password,'user');
+      return res.render("user", {
+        name: toTitleCase(x.uname),
+        email: x.emailid,
+        DOB: "20-03-2001",
+        desc: toTitleCase(x.description),
+        message:''
       });
     }
     connection.query("SELECT * FROM admin", function (err, result, fields) {
@@ -66,14 +75,16 @@ router.post("/", (req, res) => {
         return admin.emailid === email && admin.password === password;
       });
       if (y) {
-        cook(res, email, password);
+        cook(res, email, password,'admin');
         return res.render("admin", { name: y.name });
-      } else { return  res.render("login"); }
+      } else {
+        return res.render("login");
+      }
     });
   });
 });
 
-function cook(res,  email, password) {
+function cook(res, email, password,control) {
   res
     .cookie("email", email, {
       sameSite: "lax",
@@ -84,16 +95,18 @@ function cook(res,  email, password) {
       sameSite: "lax",
       httpOnly: true,
       expires: new Date(new Date().getTime() + 100 * 10000000),
+    })
+    .cookie("control",control , {
+      sameSite: "lax",
+      httpOnly: true,
+      expires: new Date(new Date().getTime() + 100 * 10000000),
     });
 }
 
 function toTitleCase(str) {
-  return str.replace(
-    /\w\S*/g,
-    function(txt) {
-      return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
-    }
-  );
+  return str.replace(/\w\S*/g, function (txt) {
+    return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
+  });
 }
 
 module.exports = router;

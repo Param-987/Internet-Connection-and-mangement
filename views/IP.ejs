@@ -1,28 +1,129 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
   <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css">
   <title>Ip address</title>
-</head>
-<body>
-  <button id="getip">
-    check ip address
-  </button>
-  <p></p>
-  <script>
+  <style>
+    body {
+      font-family: 'Roboto', sans-serif;
+      background-color: #D9CAB3;
+    }
+    a{ color: black;}
 
-   document.querySelector('#getip').addEventListener('click',()=>{
-     axios.get('http://localhost:1337/api/ip/get')
-     .then((resp)=>{
-       document.querySelector('p').innerHTML = `Ur system's Ip adress is ${resp.data}`
-       console.log(resp.status);
-     }).catch((err)=>{
-       console.log(err);
-     })
-   })
+    button {
+      width: 100px;
+      height: 40px;
+      font-size: 18px;
+      background-color: #334756;
+      color: white;
+    }
+
+    .center {
+      margin-left: auto;
+      margin-right: auto;
+      display: inline;
+    }
+
+  
+    td[colspan = '5']{text-align: center;}
+    .main {
+      text-align: center;
+    }
+
+    .content>* {
+      vertical-align: middle;
+    }
+    .paro table,th,td{border: 1px solid black;}
+    table{border-collapse: collapse;
+    margin-left: auto;
+    margin-right: auto;
+    width: 50%;
+    }
+    td,th{
+      text-align: center;
+      height: 30px;
+    }
+    .ip {
+      font-size: 18px;
+      padding: 6px;
+      min-width: 200px;
+      border: 1px solid grey;
+      height: 25px;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="main">
+    <h1>Know My IP</h1><br>
+    <div class="content">
+      <table class="center">
+        <tr>
+          <td class="ip">My IP Value...</td>
+        </tr>
+      </table>
+      <button id="getip">View IP</button>
+    </div>
+  </div> <br><br>
+  <div class="display">
+
+  </div>
+
+
+
+
+
+
+
+
+
+
+  <script>
+    document.querySelector('#getip').addEventListener('click', () => {
+      axios.get('http://localhost:1337/api/ip/get')
+        .then((resp) => {
+          document.querySelector('td').innerHTML = `${resp.data}`
+        }).catch(err => console.log(err))
+    })
+
+    window.addEventListener('load', () => {
+      axios.get('http://localhost:1337/api/ip/data/')
+        .then((resp) => display(resp.data))
+        .catch(err => console.log(err))
+    })
+
+    function display(resp) {
+      var str = ` <table class='paro'><tr><td>S No.</td><td>Date On</td><td>Time</td><td>IP Value</td><td>Delete</td></tr>`;
+        if(!resp.length){str+=`<tr><td colspan='5'> NO Data !!!!</td></tr>`}
+        var a =1;
+        for(x in resp){
+          var date = resp[x].Date_on.slice(0,10).split('-');
+          str+=`<tr>
+            <td>${a}</td>
+            <td>${date[2]}/${date[1]}/${date[0]}</td>
+            <td>${resp[x].time}</td>
+            <td>${resp[x].ipaddress}</td>
+            <td><a href="/api/ip/delete/${resp[x].ipid}"><i class="fas fa-trash"></i></a></td>
+            </tr>`
+            a++;
+        }
+      
+      str+=`</table>`
+      console.log(str);
+      document.querySelector('.display').innerHTML = str;
+    }
   </script>
 </body>
+
 </html>
+
+<!-- What is an IP Address?
+An IP address is a string of numbers separated by periods that acts as a unique identifier for devices on the internet or a local network. IP stands for "Internet Protocol" which is the set of rules that govern the format of data sent via the internet or a local network.
+
+Automate your website availability checks with Site24x7 Website Monitoring. -->

@@ -45,11 +45,11 @@ hr{border: 1px 0 0 solid white ; margin-left: -40px;}
  }
   #guide:hover #guidetip{display: block;}
   #tools:hover #tooltip { display: block;}
-
+ li > a:visited{ color: blue;}
 
 
   ul{list-style:none inside;} 
-  li{display: inline-block; color: #CD113B; margin-left:-20px; font-weight: bolder;}
+  li{display: inline-block; margin-left:-20px; font-weight: bolder;}
   a{text-decoration: none;}
   li:hover{font-size: 18px;}
   .gen{color:white;}
@@ -63,7 +63,6 @@ hr{border: 1px 0 0 solid white ; margin-left: -40px;}
       top: 700px;
       display: flex;   
       flex-flow: row;
-      
   }
   #bg{
       height: 500px;

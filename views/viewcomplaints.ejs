@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css">
+    <title>Document</title>
+</head>
+<style>
+    body {
+        font-family: 'Roboto', sans-serif;
+        background-color: #D9CAB3;
+    }
+    a{ color: black;}
+    .main{
+        text-align: center;
+    }
+
+    table,
+    th,
+    td {
+        border: 1px solid black;
+    }
+
+    table {
+        border-collapse: collapse;
+        margin-left: auto;
+        margin-right: auto;
+        min-width: 50%;
+        max-width: 80%;
+    }
+
+    td,
+    th {
+        min-width: 40%;
+        text-align: center;
+        height:25px;
+    }
+
+    td[colspan="3"],td [colspan='5'] {
+        text-align: center;
+    }
+</style>
+
+<body>
+    <div class="main">
+        <h1>Complaints </h1>
+        <div class="content">
+        </div>
+    </div>
+
+
+    <script>
+        window.addEventListener('load', () => {
+            axios.get('http://localhost:1337/complaints/get')
+                .then((resp) => display(resp))
+                .catch((err) => console.log(err))
+
+        })
+
+
+        function display(resp) {
+            var ctrl = resp.headers.control;
+            if (ctrl === 'user') {
+                var str = `<table><tr><th>S No</th><th>Date of complaint</th><th>Description</th></tr>`
+               
+            if (!resp.data.length) {
+                str += `<tr><td colspan ="3"</td>No Data...</tr>`;
+                    document.querySelector('.content').innerHTML = str;
+                return
+            }
+            var a = 1;
+            for (x in resp.data) {
+                var date = resp.data[x].cdate.slice(0, 10).split('-')
+                str += `<tr><td>${a}</td>
+                         <td>${date[2]}/${date[1]}/${date[0]}</td>
+                         <td>${resp.data[x].cdescription}</td></tr>
+                        `
+                a++;
+            }
+            str+= '</table>'
+            document.querySelector('.content').innerHTML = str;
+    }
+        else{
+            var str = `<table><tr><th>S No</th><th>Complainers Email</th><th>Date of complaint</th><th>Description</th><th>Delete</th><tr>`
+            if (!resp.data.length) {
+                str += `<tr><td colspan ="5">No Data...</td></tr>`;
+                document.querySelector('.content').innerHTML = str;
+                return
+            }
+                var a = 1;
+                for (x in resp.data) {
+                    var date = resp.data[x].cdate.slice(0, 10).split('-')
+                str += `<tr><td>${a}</td>
+                         <td>${resp.data[x].cemail}
+                            <td>${date[2]}/${date[1]}/${date[0]}</td>
+                            <td>${resp.data[x].cdescription}</td>
+                         <td><a href="/complaints/delete/${resp.data[x].cid}"><i class="fas fa-trash"></i></a></td></tr>
+                         `
+                         a++;
+                        }
+                        document.querySelector('.content').innerHTML = str;
+                    }
+    }
+    </script>
+</body>
+
+</html>

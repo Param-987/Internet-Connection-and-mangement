@@ -67,6 +67,7 @@ h1{margin-left: 0;}
 }
 a{color: white;}
 .links:link , .link:visited, .links:hover , .links:active { color:white; text-decoration: none; }
+a:link , a:visited, a:hover , a:active { color:white; text-decoration: none; }
 button{
     margin:5px auto auto  -10px;
 }

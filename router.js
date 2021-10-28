@@ -21,7 +21,7 @@ router.get('/',(req,res)=>{
 router.get('/get',(req,res)=>{
   connection.query("SELECT * FROM router", function (err, result, fields) {
     if (err) throw err;
-    res.send(result)
+    res.setHeader('control',req.cookies.control).send(result)
   });
 })
 

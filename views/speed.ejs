@@ -1,71 +1,96 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
   <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-  <!-- <script src="/speed.js"></script> -->
   <link rel="stylesheet" href="/speed.css">
   <title>Internet speed </title>
 </head>
+<style>
+   body {
+      font-family: 'Roboto', sans-serif;
+      /* background-color: #D9CAB3; */
+    }
+    .main{
+      text-align: center;
+    }
+</style>
+
 <body>
+  <div class="main">
+    <h1>LetsConnect Speed Test</h1>
+  </div>
+
   <div class="gauge">
     <div class="gauge__body">
       <div class="gauge__fill"></div>
       <div class="gauge__cover">0%</div>
     </div>
-    <button id="meter" onclick="now()" > click me </button>
+    <button id="meter" onclick="now()">Click me</button>
   </div>
-  <p class="content"></p>
+  <br>
+  <div class="content">
+    <table class="center">
+      <tr>
+        <td class="speed">Speed Value...</td>
+      </tr>
+    </table>
+  </div>
 
 
-    <script>
-      var x = 0,paro;
-function func(id) {
-  document.querySelector("#meter").disabled = false;
-  setGaugeValue(gaugeElement, 0);
-}
-function now() {
-  x = 0;
-  document.querySelector("#meter").disabled = true;
-  var id = setInterval(() => {
-    x += 0.00667;
-    setGaugeValue(gaugeElement, x);
-    if (x >= 1) {
-      func(id);
-      document.querySelector(".content").innerHTML = `Internet Speed is ${paro} mbps`;
-      clearInterval(id);
+  <script>
+    var x = 0,
+      paro;
+
+    function func(id) {
+      document.querySelector("#meter").disabled = false;
+      setGaugeValue(gaugeElement, 0);
     }
-  }, 87.1);
-};
-const gaugeElement = document.querySelector(".gauge");
 
-function setGaugeValue(gauge, value) {
-  if (value < 0 || value > 1) {
-    return;
-  }
+    function now() {
+      x = 0;
+      document.querySelector("#meter").disabled = true;
+      var id = setInterval(() => {
+        x += 0.00667;
+        setGaugeValue(gaugeElement, x);
+        if (x >= 1) {
+          func(id);
+          document.querySelector(".speed").innerHTML = ` ${paro} MBPS`;
+          clearInterval(id);
+        }
+      }, 87.1);
+    };
+    const gaugeElement = document.querySelector(".gauge");
 
-  gauge.querySelector(".gauge__fill").style.transform = `rotate(${
+    function setGaugeValue(gauge, value) {
+      if (value < 0 || value > 1) {
+        return;
+      }
+
+      gauge.querySelector(".gauge__fill").style.transform = `rotate(${
     value / 2
   }turn)`;
-  gauge.querySelector(".gauge__cover").textContent = `${Math.round(
+      gauge.querySelector(".gauge__cover").textContent = `${Math.round(
     value * 101
   )}%`;
-}
+    }
 
-document.querySelector('#meter').addEventListener('click',()=>{
-  axios
-    .get("http://localhost:1337/api/speed/get")
-    .then((resp) => { 
-      paro = resp.data.toFixed(3);
-    })
-    .catch((err) => {
-      console.log(err);
+    document.querySelector('#meter').addEventListener('click', () => {
+      axios
+        .get("http://localhost:1337/api/speed/get")
+        .then((resp) => {
+          console.log(resp);
+          paro = resp.data.toFixed(3);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
     });
-});
-
-    </script>
+  </script>
 </body>
 
 </html>

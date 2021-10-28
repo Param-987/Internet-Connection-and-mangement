@@ -1,13 +1,15 @@
 
 window.addEventListener('load',(event)=>{
     axios.get('http://localhost:1337/router/get')
-    .then((resp)=>display(resp.data))
+    .then((resp)=>{display(resp.data, resp.headers.control) })
     .catch((err)=>console.log(err))
 })
 
 
 
-function display(res){
+
+
+function display(res,ctrl){
     var z='';
     var doc= document.querySelector('.main')
     var icon;
@@ -15,11 +17,12 @@ function display(res){
     for( x in res){
 
         var paro = `'${res[x].rname}'`;
-        console.log(paro);
         var Mdate,rpdate,malfunct='';
         var ul = '<ul>'; 
+
         icon =`<button><a href="/router/delete/${res[x].rname}"><i class="fas fa-trash"></i></a></button>`
         edit = `<button onclick = fun(${paro})><i class="fas fa-edit"></i></button>`
+        if(ctrl === 'user') {icon = '' ; edit = ''}
         res[x].malfunction_date ? Mdate = (res[x].malfunction_date).slice(0,10) : Mdate ='Not Any'
         if(Mdate !== 'Not Any'){
             malfunct =`<li>Repaired Status: <span>${ res[x].rep_status }</span></li>`

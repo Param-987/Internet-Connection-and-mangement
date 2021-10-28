@@ -6,8 +6,9 @@
     <title>User </title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <link href="https://netdna.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="./user.css">
+    <link rel="stylesheet" href="/user.css">
     <!-- <script src="/user.js"></script> -->
 </head>
 
@@ -15,7 +16,7 @@
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
     <div class="connect">
         <h4><span id="let">Lets</span>Connect</h4>
-        <a href="/">
+        <a href="/login/logout">
             <h4>Log Out</h4>
         </a>
     </div>
@@ -26,7 +27,7 @@
                 <div class="panel">
                     <div class="user-heading round">
                         <a href="#">
-                            <img height="200px" width="260px" src="./photos/profile.jpg" alt="">
+                            <img height="200px" width="260px" src="/photos/profile.jpg" alt="">
                         </a>
                         <h2><%=name%></h2>
                         <p><%=email%></p>
@@ -39,11 +40,12 @@
             </div>
             <div class="profile-info col-md-9">
                 <div class="panel">
-                    <form>
-                        <textarea placeholder="File the complaint..." rows="2"
+                    <form action="/complaints" method="post">
+                        <textarea placeholder="File the complaint..." rows="2" name="complaint"
                             class="form-control input-lg p-text-area"></textarea>
                         <button class="btn btn-warning pull-right">Post</button>
                     </form>
+                    <p class="msg"><%=message%></p>
                 </div>
                 <div class="panel">
                     <div class="panel-body bio-graph-info">
@@ -67,16 +69,16 @@
                 <div>
                     <div class="row work">
                         <div class="working" id="router">
-                            <h4 class="red">View routers details</h4>
+                            <a href="/router/"><h4 class="red">View routers details</h4></a>
                         </div>
                         <div class="working" id="IP">
-                            <h4 class="terques">Know My IP Address</h4>
+                            <a href="/api/ip"><h4 class="terques">Know My IP Address</h4></a>
                         </div>
                         <div class="working" id="bb">
-                            <h4 class="green">View The Past Broadband Connections</h4>
+                            <a href="/bbc/bbcselected"><h4 class="green">View The Past Broadband Connections</h4></a>
                         </div>
                         <div class="working" id="complaint">
-                            <h4 class="purple">View my Past Complaints</h4>
+                            <a href="/complaints/"><h4 class="purple">View my Past Complaints</h4></a>
                         </div>
                     </div>
                 </div>
@@ -85,9 +87,9 @@
     </div>
 
     <script type="text/javascript">
-    document.getElementById('router').addEventListener('click',()=>{
-        axios.get()
-    })
+     window.addEventListener('load',()=>{
+
+     })
 
     </script>
 </body>
