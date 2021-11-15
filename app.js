@@ -43,7 +43,7 @@ app.use("/api/ip", ip); // use ip router
 app.use((req,res,next)=>{ 
   if( req.cookies.control === 'admin') next();
   else res.status(404).send('<h1> ERROR 404!!!! <br>The Page Not found</h1>');
-})
+}) 
 
 app.use("/admin", admin); // use admin router
  
@@ -57,6 +57,10 @@ app.use("/admin", admin); // use admin router
 //     }
 //     ); 
 //   });
+// app.get('/paro/pk/query',(req, res)=>{
+//   console.log(req.query);
+//   console.log('Param');
+// })
   
 app.get('*',(req,res)=>{
     res.status(404).send('<h1> ERROR 404!!!! <br>The Page Not found</h1>');

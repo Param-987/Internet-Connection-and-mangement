@@ -25,8 +25,17 @@ router.get("/dep", (req, res) => {
     ); 
   });
 
+ router.get('/query',(req,res)=>{
+   console.log(req.query);
+   connection.query('SELECT * FROM ROUTER WHERE rname = ?',[req.query.router],(err,result,fields)=>{
+     if(err) return console.log(err);
+     res.setHeader('control',req.cookies.control).send(result)
+   })
+  //  res.send('PAram')
+ }) 
+
 router.get('/',(req,res)=>{
-  res.render('viewrouter',{rname:'',rpassword:'',Mdate:'',dep:'',rs:'',rd:''})
+  res.render('viewrouter')
 })
 
 router.get('/get',(req,res)=>{
@@ -39,7 +48,7 @@ router.get('/get',(req,res)=>{
 router.get('/delete/:id',(req,res)=>{
   connection.query(`DELETE FROM router WHERE rname = '${req.params.id}'`, function (err, result) {
     if (err) throw err;
-    res.render('viewrouter',{rname:'',rpassword:'',Mdate:'',dep:'',rs:'',rd:''})
+    res.render('viewrouter')
   });
 })
 
@@ -60,7 +69,7 @@ router.post('/edit/update/:id',(req,res,next)=>{
     [req.body.rname,req.body.rpassword,req.body.Mdate,req.body.dep,req.body.rs,req.body.rd,req.params.id],
      function (err, result) {
       if (err) throw err;
-      res.render('viewrouter',{rname:'',rpassword:'',Mdate:'',dep:'',rs:'',rd:''})
+      res.render('viewrouter')
       
   });
 })

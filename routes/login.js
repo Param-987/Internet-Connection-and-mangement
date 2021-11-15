@@ -95,7 +95,7 @@ router.post("/", (req, res) => {
         cook(res, email, password, "admin");
         return res.render("admin", { name: y.name });
       } else {
-        return res.render("login",{msg:'Please Enter Correct Credentials'});
+        return res.render("login",{msg:'Please Enter Correct Credentials Or Signup if not a user'});
       }
     });
   });

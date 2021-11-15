@@ -5,7 +5,9 @@
     <title>List of routers installed</title>
     <link href="https://fonts.googleapis.com/css2?family=Merriweather:ital@1&display=swap" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <script src="/viewrouter.js"></script>
 </head>
 <style>
@@ -15,46 +17,91 @@
 div.top {
     opacity: .8;
     width: 80%;
+    margin-left: 250px;
+    clear: right;
+
 }
-a{
-    color: black;
-   
+a{ color: black; }
+.pia{ float: right;
+    margin-right: 40px;
 }
+
 .icons{margin:auto 40px;}
 i{ font-size: 20px;}
-li{
-    margin: 5px auto;
-}
-input{width: 250px;}
-.hide{display: none;}    
+li{margin: 5px auto;}
+.hide{
+    border: 1px solid black;
+    padding: 40px;
+    box-shadow: -18px -37px 400px -73px #3F3351 inset;
+    opacity: 1;
+    display: none;
+    position: absolute;
+     left: 40%;
+     z-index: 5;
+}    
+
 </style>
 
 <body style="font-family: 'Merriweather', serif; margin-top: 50px;" >
     <div class="hide">
-        <form action="/admin/edit/update" method="post" class="Form">
-            <table>
-            <tr><td><label for="rname">Router Name:</td><td><input type="text" id="rname" name="rname" value='<%=rname%>'></label>  </td></tr>
-            <tr><td><label for="rpassword">Router Password:</td><td><input type="text" id="rpassword" name="rpassword" value='<%=rpassword%>'></label> </td></tr>
-            <tr><td><label for="Mdate">Malfunction Date:</td><td><input type="date" id="Mdate" name="Mdate" value='<%=Mdate%>'></label> </td></tr>
-            <tr><td><label for="dep">Department Install :</td><td><input type="text" id="dep" name="dep" value='<%=dep%>'></label> </td></tr>
-            <tr><td><label for="rs">Repaired Status:</td><td><input type="text" id="rs" name="rs" value='<%=rs%>'></label> </td></tr>
-            <tr><td><label for="rd">Repaired date:</td><td><input type="Date" id="rd" name="rd" value='<%=rd%>'></label> </td></tr>
-            <tr><td></td><td><button>Submit</button></td></tr>
-        </table>
-        </form>
+         <form action="/admin/edit/update" method="post" class="Form">
+        <div class="input-group mb-3">
+            <span class="input-group-text" id="basic-addon1">Router Name</span>
+            <input type="text" class="form-control" aria-label="Username" aria-describedby="basic-addon1"
+            name="rname" id="rname">
+        </div>
+        <div class="input-group mb-3">
+            <span class="input-group-text" id="basic-addon1">Password:</span>
+            <input type="text" class="form-control" aria-label="Username" aria-describedby="basic-addon1"
+            name="rpassword" id="rpassword">
+        </div>
+        <div class="input-group mb-3">
+            <span class="input-group-text" id="basic-addon1">Department Install:</span>
+            <input type="text" class="form-control" aria-label="Username" aria-describedby="basic-addon1"
+            name="dep" id="dep">
+        </div>
+        <div class="input-group mb-3">
+            <span class="input-group-text" id="basic-addon1">Date of Install:</span>
+            <input type="date" class="form-control" aria-label="Username" aria-describedby="basic-addon1"
+            name="di" id="di">
+        </div>
+        <div class="input-group mb-3">
+            <span class="input-group-text" id="basic-addon1">Malfunction Date:</span>
+            <input type="date" class="form-control" aria-label="Username" aria-describedby="basic-addon1"
+            name="Mdate" id="Mdate">
+        </div>
+        <div class="input-group mb-3">
+            <span class="input-group-text" id="basic-addon1">Repaired Status:</span>
+            <input type="text" class="form-control" aria-label="Username" aria-describedby="basic-addon1"
+            name="rs" id="rs">
+        </div>
+        <div class="input-group mb-3">
+            <span class="input-group-text" id="basic-addon1">Repaired Status:</span>
+            <input type="text" class="form-control" aria-label="Username" aria-describedby="basic-addon1"
+            name="rs" id="rs">
+        </div>
+        <div class="input-group mb-3">
+            <span class="input-group-text" id="basic-addon1">Repaired date:</span>
+            <input type="date" class="form-control" aria-label="Username" aria-describedby="basic-addon1"
+            name="rd" id="rd">
+        </div>
+        <button type="submit" class="btn btn-primary">Edit</button>
+    </form> 
+          
+    </div>
+
+
+    <div class="pia">
+        <input type="text"  name="router" placeholder="Search By Router name" id="sear">
+        <button onclick="search()" ><i class="fa fa-search"></i></button>
     </div>
 
     <div class="top" style="margin: auto;">
         <h2>List of all routers installed are </h2>
         <div class="main">
     </div>
-    
-
-
-
-
-
     </div>
+
 </body>
 
 </html>
