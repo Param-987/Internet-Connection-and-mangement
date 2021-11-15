@@ -8,13 +8,12 @@ window.addEventListener('load', (event) => {
     })
 
 function display(resp){
-  var z= '<br><table>'
+  var z= '<table>'
   var a=1;
-  // console.log(resp.data);
   for(var x in resp.data){
     if(a%2==0) {
-      z+=`<td><input type="checkbox" id="${a}" name="department" value="${resp.data[x].dep_name}">
-      <label for="${a}">${resp.data[x].dep_name}</label> </td></tr>`
+      z+=`<td><input class="form-check-input" type="checkbox" id="${a}" name="department" value="${resp.data[x].dep_name}">
+      <label class="form-check-label" for="${a}">${resp.data[x].dep_name}</label> </td></tr>`
     }
     else{
     z+=`<tr><td><input type="checkbox" id="${a}" name="department" value="${resp.data[x].dep_name}">
@@ -25,4 +24,13 @@ a++;
 z+='</table>'
   document.querySelector('#labeled').innerHTML +=z;
 }
+
+/*
+<div class="form-check">
+  <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+  <label class="form-check-label" for="flexCheckDefault">
+    Default checkbox
+  </label>
+</div>
+*/
 

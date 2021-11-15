@@ -75,10 +75,10 @@ router.post("/", (req, res) => {
       return user.emailid === email && user.password === password;
     });
     if (x) {
-     
       cook(res, email, password, "user");
       return res.render("user", {
         name: toTitleCase(x.uname),
+        roll:x.roll_no,
         email: x.emailid,
         DOB: D_O_B(JSON.stringify(x.dob)),
         desc: toTitleCase(x.description),
