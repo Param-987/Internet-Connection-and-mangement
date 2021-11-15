@@ -1,42 +1,32 @@
 body {
     margin: 0px;
     font-family: 'Raleway', sans-serif;
-    font-weight: bold;
-    
+    font-weight: bold;   
+    background-image: url(/photos/ass3.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
 }
 .outer {
-    background-color:rgb(238,283,283,0.7);
-    width: 50%;
-    margin:50px auto;
+    background-color:#9A9483;
+    width:40%;
+    margin:50px;
 }
-.asterik::after{
-    content: "*";
-    color: red;
-}
-
 .form > div {
     margin-bottom: 15px;   
 }
 
-
 input:focus { background-color: #C2FFD9;}
-input ,p.asterik , select {margin:10px;}
-input,select,label{ font-size:18px ;}
+input , select {margin:10px;}
+input,select,label{ font-size:17px ;}
 
+h1{margin: 0;}
 
-p {
-    margin:0 10px;
-    font-size: 20px;
-}
+ .heading {  text-align: center;} 
 div{ margin-left: 10px;}
 
-#self-employed {    margin-left: 250px;}
-#student {    margin-left: 232.8px;}
 span {
     font-size: 18px;
-}
-h1 {text-align: center;
-    margin-bottom: 0;
 }
 
 option.role {
@@ -47,8 +37,8 @@ td{
 }
 
 .button {
-    position: relative;
-    left:500px;
+    position: inherit;
+    margin-left: 65%;
     border:2px solid #8E05C2;
     padding: 5px 20px;
     font-size: 17px;
@@ -63,5 +53,9 @@ td{
 }
 button:active{
     transform: translateY(2px);
+}
+
+.msg{
+    color: greenyellow;
 }
 

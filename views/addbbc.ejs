@@ -16,6 +16,9 @@
             background-repeat: no-repeat;
             background-size: cover;
         }
+        .msg{
+            color:greenyellow ;
+        }
     </style>
     <link rel="stylesheet" href="/adminform.css">
     <script src="/bbc.js"></script>
@@ -26,6 +29,7 @@
     <div class="outer">
         <div class="heading">
             <h1>Get a Broadband Connection </h1>
+            <h3 class="msg"><%=msg%></h3>
         </div>
         <hr>
         <form action="/bbc/buy" method="post">
@@ -41,7 +45,7 @@
                 </div>
 
                 <div class="element"><label for="dur">Select the duration :<input type="number" id="dur"
-                             name="dur" value="1" min="0" max="12"></label></div>
+                             name="dur" value="1" min="1" max="12"></label></div>
 
                 <div class="element"><label for="date">From when want the plan:<input type="date" id="date" name="date"
                             required onfocus="func()" ></label></div>

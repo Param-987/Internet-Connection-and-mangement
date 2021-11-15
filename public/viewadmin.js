@@ -1,6 +1,6 @@
 
 window.addEventListener('load',(event)=>{
-    axios.get('http://localhost:1337/admin')
+    axios.get('http://localhost:1337/admin/viewadmin/data')
     .then((resp)=>display(resp))
     .catch((err)=>console.log('data cant fetched'))
 })
