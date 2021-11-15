@@ -1,7 +1,7 @@
 // const { default: axios } = require("axios");
 
 window.addEventListener('load', (event) => {
-    axios.get('http://localhost:1337/dep')
+    axios.get('http://localhost:1337/router/dep')
      .then((resp)=>display(resp)).catch((err)=>{
        console.log('cant fetch to show');
      })

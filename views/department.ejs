@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css">
+  <title>Ip address</title>
+  <style>
+    body {
+      font-family: 'Roboto', sans-serif;
+      background-color: #D9CAB3;
+    }
+    a{ color: black;}
+
+    button {
+      width: 80px;
+      font-size: 16px;
+      background-color: #00A19D;
+      color: white;
+      border:1px solid black;
+      border-radius:2px;
+    }
+    button:hover{cursor: pointer;}
+    button:active{transform:translateY(1.5px);}
+
+    .center {
+      margin-left: auto;
+      margin-right: auto;
+      display: inline;
+    }
+
+  
+    td[colspan = '3']{text-align: center;}
+    .main,.dabba {
+      text-align: center;
+    }
+
+    .content>* {
+      vertical-align: middle;
+    }
+    .paro table,th,td{border: 1px solid black;}
+    table{border-collapse: collapse;
+    margin-left: auto;
+    margin-right: auto;
+    width: 50%;
+    }
+    td,th{
+      text-align: center;
+      height: 30px;
+    }
+
+  </style>
+</head>
+
+<body>
+  <div class="main">
+    <h1>Departments Under Connections are</h1><br>
+    <h3><%=msg%></h3>
+  </div>
+  <div class="display">
+
+  </div>
+
+  <script>
+    window.addEventListener('load', () => {
+      axios.get('http://localhost:1337/department/data')
+        .then((resp) =>display(resp.data))
+        .catch(err => console.log(err))
+    })
+    function display(resp) {
+      var str = ` <table class='paro'><tr><td>S No.</td><td>Department Name</td><td>Delete</td></tr>`;
+        if(!resp.length){str+=`<tr><td colspan='3'> NO Data !!!!</td></tr>`}
+        var a =1;
+        for(x in resp){
+          str+=`<tr>
+            <td>${a}</td>
+            <td>${resp[x].dep_name}</td>
+            <td><a href="/department/delete/${resp[x].dep_name}"><i class="fas fa-trash"></i></a></td>
+            </tr>`
+            a++;
+        }
+      str+=`</table>`
+      str+=`<br><div class="dabba">
+    <label for="dep">Add a Department: <input type="text" name="department" id="dep"></label>
+    <button onclick =pia() >Add</button>
+  </div>`
+      document.querySelector('.display').innerHTML = str;
+    }
+
+    function pia(){
+        var t = document.querySelector('#dep').value;
+        if(!t) return ;
+        axios.post('http://localhost:1337/department/data',{
+            dep:t
+        }).then((resp)=> window.location.replace('http://localhost:1337/department'))
+        .catch((err)=> console.log(err,'Pia'))
+    }
+  </script>
+</body>
+
+</html>

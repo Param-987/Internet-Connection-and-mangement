@@ -1,8 +1,7 @@
 // const { default: axios } = require("axios");
 
 window.addEventListener('load', (event) => {
-    console.log('page is fully loaded');
-    axios.get('http://localhost:1337/dep')
+    axios.get('http://localhost:1337/admin/dep')
      .then((resp)=>display(resp)).catch((err)=>{
        console.log('cant fetch to show');
      })
@@ -24,7 +23,6 @@ function display(resp){
 a++;
 }
 z+='</table>'
-console.log(z);
   document.querySelector('#labeled').innerHTML +=z;
 }
 
