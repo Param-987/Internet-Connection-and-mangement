@@ -58,7 +58,6 @@ function fun(x){
         document.getElementById('rname').value = resp.data[0].rname;
         document.getElementById('rpassword').value = resp.data[0].rpassword;
         document.getElementById('dep').value = resp.data[0].dep_install;
-        document.getElementById('di').value = resp.data[0].Date_of_install.slice(0,10);
         document.getElementById('rs').value = resp.data[0].rep_status;
         if( resp.data[0].malfunction_date)  document.getElementById('Mdate').value = (resp.data[0].malfunction_date).slice(0,10);
         if( resp.data[0].rep_date)  document.getElementById('rd').value = (resp.data[0].rep_date).slice(0,10);

@@ -44,7 +44,7 @@ li{margin: 5px auto;}
 
 <body style="font-family: 'Merriweather', serif; margin-top: 50px;" >
     <div class="hide">
-         <form action="/admin/edit/update" method="post" class="Form">
+         <form action="/admin/edit/update"  method="post" class="Form">
         <div class="input-group mb-3">
             <span class="input-group-text" id="basic-addon1">Router Name</span>
             <input type="text" class="form-control" aria-label="Username" aria-describedby="basic-addon1"
@@ -61,19 +61,9 @@ li{margin: 5px auto;}
             name="dep" id="dep">
         </div>
         <div class="input-group mb-3">
-            <span class="input-group-text" id="basic-addon1">Date of Install:</span>
-            <input type="date" class="form-control" aria-label="Username" aria-describedby="basic-addon1"
-            name="di" id="di">
-        </div>
-        <div class="input-group mb-3">
             <span class="input-group-text" id="basic-addon1">Malfunction Date:</span>
             <input type="date" class="form-control" aria-label="Username" aria-describedby="basic-addon1"
             name="Mdate" id="Mdate">
-        </div>
-        <div class="input-group mb-3">
-            <span class="input-group-text" id="basic-addon1">Repaired Status:</span>
-            <input type="text" class="form-control" aria-label="Username" aria-describedby="basic-addon1"
-            name="rs" id="rs">
         </div>
         <div class="input-group mb-3">
             <span class="input-group-text" id="basic-addon1">Repaired Status:</span>
@@ -86,6 +76,7 @@ li{margin: 5px auto;}
             name="rd" id="rd">
         </div>
         <button type="submit" class="btn btn-primary">Edit</button>
+        <button class="btn btn-primary" onclick=hide()>Cancel</button>
     </form> 
           
     </div>
@@ -102,6 +93,13 @@ li{margin: 5px auto;}
     </div>
     </div>
 
+    <script> 
+        function hide(){
+            document.querySelector('.hide').style.display = 'none';
+        }
+    </script>
+
 </body>
+
 
 </html>

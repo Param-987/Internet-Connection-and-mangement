@@ -65,8 +65,12 @@ router.get('/edit/:id',(req,res)=>{
 })
 
 router.post('/edit/update/:id',(req,res,next)=>{
-    connection.query(`UPDATE router SET rname = ?, rpassword = ? , malfunction_date = ?,dep_install = ?, rep_status = ? ,rep_date = ?  WHERE rname = ?`,
-    [req.body.rname,req.body.rpassword,req.body.Mdate,req.body.dep,req.body.rs,req.body.rd,req.params.id],
+  const {rname,rpassword,Mdate,dep,rs,rd} = req.body;
+  console.log(rname,rpassword,Mdate,dep,rs,rd);
+  
+    connection.query(`UPDATE router SET rname =?, rpassword =?
+     ,malfunction_date =?,dep_install =?, rep_status =? ,rep_date = ?  WHERE rname = ?`,
+    [rname,rpassword,Mdate,dep,rs,rd,req.params.id],
      function (err, result) {
       if (err) throw err;
       res.render('viewrouter')

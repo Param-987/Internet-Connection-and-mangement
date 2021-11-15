@@ -46,22 +46,7 @@ app.use((req,res,next)=>{
 }) 
 
 app.use("/admin", admin); // use admin router
- 
-// app.get("/dep", (req, res) => {
-
-//   connection.query(
-//     "SELECT dep_name FROM department WHERE dep_name not in (select dep_install FROM router);",
-//     function (err, result, fields) {
-//       if (err) throw err;
-//       res.send(result);
-//     }
-//     ); 
-//   });
-// app.get('/paro/pk/query',(req, res)=>{
-//   console.log(req.query);
-//   console.log('Param');
-// })
-  
+     
 app.get('*',(req,res)=>{
     res.status(404).send('<h1> ERROR 404!!!! <br>The Page Not found</h1>');
   })
