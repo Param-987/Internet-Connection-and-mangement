@@ -2,7 +2,6 @@ var response;
 window.addEventListener('load', (event) => {
     axios.get('http://localhost:1337/bbc/get')
      .then((resp)=>{ response  = resp;
-      console.log(resp.data);
        work(resp.data)
      }).catch((err)=>{
        console.log('cant fetch to show');

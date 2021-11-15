@@ -25,13 +25,13 @@ h1{margin: 0;}
  .heading {  text-align: center;} 
 div{ margin-left: 10px;}
 
-span {
+/* span {
     font-size: 18px;
-}
+} */
 
-option.role {
+/* option.role {
     color:black;
-}
+} */
 td{
     width: 250px;
 }
