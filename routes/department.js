@@ -16,12 +16,14 @@ app.use(express.urlencoded({extended:false}))
 app.use(express.static('./public'))
 
 router.get('/',(req,res)=>{
-  res.render('department',{msg:''})
+    res.render('department',{msg:''})
+    // console.log(req.cookies.Auth);
 })
 router.get('/data',(req,res)=>{
     connection.query(`SELECT * FROM department`,(err,result,fields)=>{
         if(err) res.send(res.sqlMessage)
-        res.send(result);
+        if(req.cookies.Auth) return res.setHeader('ctrl',true).send(result);
+        else return res.setHeader('ctrl',false).send(result);
     })
 })
 router.post('/data',(req,res)=>{
