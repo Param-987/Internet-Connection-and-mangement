@@ -24,7 +24,7 @@ router.get("/", (req, res) => {
 });
 
 router.get("/signup", (req, res) => {
-  res.render("signup");
+  res.render("signup",{msg:''});
 });
 
 router.get("/logout", (req, res) => {
@@ -35,6 +35,11 @@ router.get("/logout", (req, res) => {
 });
 
 router.post("/signup", (req, res) => {
+  connection.query(`SELECT emailid from users where emailid = ?`,[req.body.email],(err,result,fields)=>{
+    if(err) return res.render('signup',{msg:err.sqlMessage})
+    if(result) return res.render('signup',{msg:'Already registered by this Email...'})
+  
+  
   if (!req.files) return res.status(400).send("No files were uploaded.");
   var file = req.files.profile;
   var type = file.mimetype;
@@ -66,6 +71,7 @@ router.post("/signup", (req, res) => {
       );
     });
   }
+});
 });
 
 router.post("/", (req, res) => {

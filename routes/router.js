@@ -27,7 +27,7 @@ router.get("/dep", (req, res) => {
 
  router.get('/query',(req,res)=>{
    console.log(req.query);
-   connection.query('SELECT * FROM ROUTER WHERE rname = ?',[req.query.router],(err,result,fields)=>{
+   connection.query('SELECT * FROM ROUTER WHERE dep_install like ?',['%'+req.query.router+'%'],(err,result,fields)=>{
      if(err) return console.log(err);
      res.setHeader('control',req.cookies.control).send(result)
    })

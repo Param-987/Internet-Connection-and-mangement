@@ -70,7 +70,7 @@ function fun(x){
 function search(){
     var s = document.querySelector('#sear').value;
     axios.get(`http://localhost:1337/router/query?router=${s}`)
-    .then((resp)=>{display(resp.data, resp.headers.control,'No router with that name...') })
+    .then((resp)=>{display(resp.data, resp.headers.control,'No router installed in that department...') })
     .catch((err)=>console.log(err))
 
 }
