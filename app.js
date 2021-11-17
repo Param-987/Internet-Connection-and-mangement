@@ -38,7 +38,7 @@ app.use('/user',user)
 app.use("/router", modem); // use modem router
 app.use("/complaints", complaints);
 app.use("/bbc", bbc); // use speed router
-app.use("/api/ip", ip); // use ip router
+app.use("/api/ip", ip); // use ip router 
 
 app.use((req,res,next)=>{ 
   if( req.cookies.control === 'admin') next();
