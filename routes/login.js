@@ -2,8 +2,6 @@ const express = require("express");
 const app = express();
 const bodyParser = require("body-parser");
 const cookieParser = require("cookie-parser");
-const axios = require("axios");
-const mysql = require("mysql");
 const cors = require("cors");
 const http = require("http");
 const path = require("path");
@@ -35,9 +33,10 @@ router.get("/logout", (req, res) => {
 });
 
 router.post("/signup", (req, res) => {
-  connection.query(`SELECT emailid from users where emailid = ?`,[req.body.email],(err,result,fields)=>{
-    if(err) return res.render('signup',{msg:err.sqlMessage})
-    if(result.length > 0) return res.render('signup',{msg:'Already registered by this Email...'})
+  const query = `SELECT emailid from users where emailid = '${req.body.email}'`;
+  connection.query(query,(err,result,fields)=>{
+    if(err)  return res.render('signup',{msg:err.sqlMessage}) 
+    if(result.rows.length > 0) return res.render('signup',{msg:'Already registered by this Email...'})
   
   
   if (!req.files) return res.status(400).send("No files were uploaded.");
@@ -52,11 +51,10 @@ router.post("/signup", (req, res) => {
     file.mimetype == "image/gif"
   ) {
     file.mv("public/photos/upload/" + file.name, function (err) {
+      const query = `INSERT INTO users (roll_no,uname,emailid,password,description,dob,image) 
+      VALUES ('${rollno}','${full_name}','${email}','${ password}','${description}','${DOB}','${imgName}')`;
       if (err) return res.status(500).send(err);
-      connection.query(
-        `INSERT INTO users (roll_no,uname,emailid,password,description,dob,image)  VALUES (?,?,?,?,?,?,?)`,
-        [rollno, full_name, email, password, description, DOB, imgName],
-        (err, result) => {
+      connection.query(query,(err, result) => {
           if (err) throw err;
           cook(res, email, password, "user");
           return res.render("user", {
@@ -70,14 +68,14 @@ router.post("/signup", (req, res) => {
         }
       );
     });
-  }
+  } 
 });
 });
 
 router.post("/", (req, res) => {
   const { email, password } = req.body;
   connection.query("SELECT * FROM users", function (err, result, fields) {
-    var x = result.find((user) => {
+    var x = result.rows.find((user) => {
       return user.emailid === email && user.password === password;
     });
     if (x) {
@@ -94,7 +92,7 @@ router.post("/", (req, res) => {
     }
     connection.query("SELECT * FROM admin", function (err, result, fields) {
       if (err) throw err;
-      var y = result.find((admin) => {
+      var y = result.rows.find((admin) => {
         return admin.emailid === email && admin.password === password;
       });
       if (y) {

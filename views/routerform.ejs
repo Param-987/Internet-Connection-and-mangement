@@ -32,11 +32,10 @@
       
 
     </style>
-    <script src="/routerform.js"></script>
 </head>
 
 <body>
-
+    
     <div class="outer">
         <div class="heading">
             <h1>Add a new router </h1>
@@ -44,41 +43,37 @@
         </div>
         <hr>
         <form action="/router" method="post">
-            <!-- <div class="element"><label for="fname">Router Name:<input type="text" name="rname" id="fname" required
-                        placeholder="Router Name" size="30px"></label></div> -->
-
-            <div class="input-group mb-3">
-                <span class="input-group-text" >Router Name:</span>
-                <input type="text" class="form-control" aria-label="Username" aria-describedby="basic-addon1"
+                <div class="input-group mb-3">
+                    <span class="input-group-text" >Router Name:</span>
+                    <input type="text" class="form-control" aria-label="Username" aria-describedby="basic-addon1"
                     name="rname" id="rname" required placeholder="Router Name">
-            </div>
-
-            <div class="input-group mb-3">
-                <span class="input-group-text" >Router Password:</span>
-                <input type="text" class="form-control" aria-label="Username" aria-describedby="basic-addon1"
+                </div>
+                
+                <div class="input-group mb-3">
+                    <span class="input-group-text" >Router Password:</span>
+                    <input type="text" class="form-control" aria-label="Username" aria-describedby="basic-addon1"
                     name="pass" id="password" required placeholder="Router Password">
-            </div>
-            
-            <div class="input-group mb-3">
-                <span class="input-group-text" >Date of Install:</span>
-                <input type="date" class="form-control" aria-label="Username" aria-describedby="basic-addon1"
+                </div>
+                
+                <div class="input-group mb-3">
+                    <span class="input-group-text" >Date of Install:</span>
+                    <input type="date" class="form-control" aria-label="Username" aria-describedby="basic-addon1"
                     name="date" id="date" required >
-            </div>
-            <span class="input-group-text" >Departments Installed:</span>
-
-
+                </div>
+                <span class="input-group-text" >Departments Installed:</span>
+                
+                
                 <div id="labeled">
                 </div> 
-
+                
                 <div>
                     <button type="submit" class="btn btn-primary" style="float: right">Submit</button>
                 </div>
+                
+            </form>
 
-        </form>
-
-<script>
-    
-</script>
+                
+                <script src="/routerform.js"></script>
 
 </body>
 

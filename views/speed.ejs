@@ -82,9 +82,8 @@
 
     document.querySelector('#meter').addEventListener('click', () => {
       axios
-        .get("http://localhost:1337/api/speed/get")
+        .get("/api/speed/get")
         .then((resp) => {
-          console.log(resp);
           paro = resp.data.toFixed(3);
         })
         .catch((err) => {

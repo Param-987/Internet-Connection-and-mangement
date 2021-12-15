@@ -16,7 +16,7 @@ const elem = document.getElementById("out");
 clearInterval(id);
 id = setInterval(frame, 5);
 function frame() {
-if (pos == 1500*(a+1)) {  a++; console.log(a);
+if (pos == 1500*(a+1)) {  a++;
 clearInterval(id);
 } else {
 pos+=10;
@@ -33,7 +33,7 @@ let id = null;
 clearInterval(id);
 id = setInterval(frame, 5);
 function frame() {  
-    if (pos == 1500*(a-1)) {   a--;console.log(a);
+    if (pos == 1500*(a-1)) {   a--;
 if(a==0) document.querySelector('.goleft').setAttribute('disabled','true')
 clearInterval(id);
 } else {

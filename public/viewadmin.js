@@ -1,10 +1,7 @@
-
-window.addEventListener('load',(event)=>{
-    axios.get('http://localhost:1337/admin/viewadmin/data')
-    .then((resp)=>display(resp))
+var response ;
+    axios.get('/admin/viewadmin/data')
+    .then((resp)=>{ response = resp.data.res1 ;display(resp)})
     .catch((err)=>console.log('data cant fetched'))
-})
-
 
 
 function display(resp){
@@ -48,15 +45,20 @@ function display(resp){
 
 function fun(x){
     var doc = document.querySelector('.hide')
-    axios.get(`http://localhost:1337/admin/edit/${x}`)
-    .then((resp)=>{ 
-        document.getElementById('email').value = resp.data[0].emailid;
-        document.getElementById('name').value = resp.data[0].name;
-        document.getElementById('phone').value = resp.data[0].phone_no;
-        document.getElementById('password').value = resp.data[0].password;
+
+    var res = response.filter((resp)=> resp.emailid === x)
+        document.getElementById('email').value = res[0].emailid;
+        document.getElementById('name').value = res[0].name;
+        document.getElementById('phone').value = res[0].phone_no;
+        document.getElementById('password').value = res[0].password;
         document.querySelector('.Form').action = `/admin/edit/update/${x}`
-    })
-    .catch((err)=>console.log(err))
-    
-    doc.style.display = 'block';
+        doc.style.display = 'block';
 }
+
+document.getElementById('cancel').addEventListener('click',(e)=>{
+e.preventDefault();
+document.querySelector('.hide').style.display = 'none'
+})
+document.getElementById('edit').addEventListener('click',(e)=>{
+    // e.preventDefault()
+    document.querySelector('form').submit()})

@@ -55,12 +55,9 @@
 
 
     <script>
-        window.addEventListener('load', () => {
-            axios.get('http://localhost:1337/complaints/get')
-                .then((resp) =>{ console.log(resp); display(resp)}) 
+            axios.get('/complaints/get')
+                .then((resp) =>{  display(resp)}) 
                 .catch((err) => console.log(err))
-
-        })
 
 
         function display(resp) {

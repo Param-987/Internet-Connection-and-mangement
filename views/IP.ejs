@@ -86,25 +86,35 @@
 
 
   <script>
-    document.querySelector('#getip').addEventListener('click', () => {
-      axios.get('http://localhost:1337/api/ip/get')
-        .then((resp) => {
-          document.querySelector('td').innerHTML = `${resp.data}`
-        }).catch(err => console.log(err))
-    })
+    document.querySelector('#getip').addEventListener('click', () =>getIpAddress())
 
-    window.addEventListener('load', () => {
-      axios.get('http://localhost:1337/api/ip/data/')
+    const getIpAddress = async() =>{
+
+      await axios.get('https://api.ipify.org?format=json')
+      .then(async(resp)=>{
+         document.querySelector('td').innerHTML = `${resp.data.ip}`;
+         const b = await axios.post('/api/ip/post',{
+           ip:`${document.querySelector('td').innerHTML}`
+         })
+         .then(async(resp)=>{
+           await axios.get('/api/ip/data/')
+           .then((resp) => display(resp.data))
+           .catch(err => console.log(err))
+         })
+      })
+      .catch((err)=> console.log(err))
+    }
+
+      axios.get('/api/ip/data/')
         .then((resp) => display(resp.data))
         .catch(err => console.log(err))
-    })
 
     function display(resp) {
       var str = ` <table class='paro'><tr><td>S No.</td><td>Date On</td><td>Time</td><td>IP Value</td><td>Delete</td></tr>`;
         if(!resp.length){str+=`<tr><td colspan='5'> NO Data !!!!</td></tr>`}
         var a =1;
         for(x in resp){
-          var date = resp[x].Date_on.slice(0,10).split('-');
+          var date = resp[x].date_on.slice(0,10).split('-');
           str+=`<tr>
             <td>${a}</td>
             <td>${date[2]}/${date[1]}/${date[0]}</td>
@@ -116,7 +126,6 @@
         }
       
       str+=`</table>`
-      console.log(str);
       document.querySelector('.display').innerHTML = str;
     }
   </script>

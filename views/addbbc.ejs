@@ -45,12 +45,10 @@
             display: inline-block;
         }
     </style>
-    <!-- <link rel="stylesheet" href="/adminform.css"> -->
-    <script src="/bbc.js"></script>
 </head>
 
 <body>
-
+    
     <div class="outer">
         <div class="heading">
             <h1>Get a Broadband Connection </h1>
@@ -69,13 +67,13 @@
                         id="ispname">
                     </select>
                 </div><br>
-
-
+                
+                
                 <div class="element"> <span class="input-group-text" id="basic-addon1"
-                        style="display: inline-block">Select Package</span>
+                    style="display: inline-block">Select Package</span>
                     <div class="form-check">
                         <input class="form-check-input" type="radio" name="package" id="package1" value="monthly"
-                            checked>
+                        checked>
                         <label class="form-check-label" for="package1">
                             Monthly
                         </label>
@@ -87,36 +85,37 @@
                         </label>
                     </div>
                 </div><br>
-
-
+                
+                
                 <div class="input-group mb-3">
                     <span class="input-group-text" id="basic-addon1">Select Duration:</span>
                     <input type="number" class="form-control" aria-label="Username" aria-describedby="basic-addon1"
-                        name="dur" id="dur" value="1" min="1" max="12">
+                    name="dur" id="dur" value="1" min="1" max="12">
                 </div>
                 <div class="input-group mb-3">
                     <span class="input-group-text" id="basic-addon1">Plan Starting date:</span>
                     <input type="date" class="form-control" aria-label="Username" aria-describedby="basic-addon1"
-                        name="date" id="date" onfocus="func()" required>
+                    name="date" id="date" onfocus="func()" required>
                 </div>
-
+                
                 <div class="input-group mb-3">
                     <span class="input-group-text" id="basic-addon1">Cost will be</span>
                     <input type="text" class="form-control" aria-label="Username" aria-describedby="basic-addon1"
                         name="cost" id="cost" readonly="readonly">
                 </div>
-
+                
                 <div>
                     <button type="submit" class="btn btn-primary">Get the Plan</button>
                 </div>
-
+                
                 <p></p>
             </div>
-
+            
         </form>
-
-
-
-</body>
+        
+        
+        
+    <script src="/bbc.js"></script>
+    </body>
 
 </html>

@@ -1,37 +1,30 @@
 const express = require('express')
 const app = express()
-const bodyParser = require('body-parser');
-const axios = require('axios')
-const mysql = require('mysql')
-const cors = require('cors');
 const  http = require('http');
 const path = require('path');
 const connection = require('./db_service') 
 
 const router = express.Router()
 
-app.use(cors({origin:'*'}));
 app.use(express.json())
 app.use(express.urlencoded({extended:false}))
 
 router.get("/dep", (req, res) => {
-
   connection.query(
     "SELECT dep_name FROM department WHERE dep_name not in (select dep_install FROM router);",
     function (err, result, fields) {
       if (err) throw err;
-      res.send(result);
+      res.send(result.rows);
     }
     ); 
   });
 
  router.get('/query',(req,res)=>{
-   console.log(req.query);
-   connection.query('SELECT * FROM ROUTER WHERE dep_install like ?',['%'+req.query.router+'%'],(err,result,fields)=>{
+   const query = `SELECT * FROM router WHERE dep_install like '${"%"+req.query.router+"%"}'`
+   connection.query(query,(err,result,fields)=>{
      if(err) return console.log(err);
-     res.setHeader('control',req.cookies.control).send(result)
+     res.setHeader('control',req.cookies.control).send(result.rows)
    })
-  //  res.send('PAram')
  }) 
 
 router.get('/',(req,res)=>{
@@ -41,7 +34,7 @@ router.get('/',(req,res)=>{
 router.get('/get',(req,res)=>{
   connection.query("SELECT * FROM router", function (err, result, fields) {
     if (err) throw err;
-    res.setHeader('control',req.cookies.control).send(result) // header set to ensure that admin is viewing to provide cred operation to him 
+    res.setHeader('control',req.cookies.control).send(result.rows) // header set to ensure that admin is viewing to provide cred operation to him 
   });
 })
 
@@ -59,18 +52,16 @@ router.get('/routerform',(req,res)=>{res.render('routerform',{msg:'',color:'gree
 router.get('/edit/:id',(req,res)=>{
   connection.query(`SELECT * FROM router WHERE rname = '${req.params.id}'`, function (err, result, fields) {
     if (err) throw err;
-    res.send(result)
+    res.send(result.rows)
   });
   
 })
 
 router.post('/edit/update/:id',(req,res,next)=>{
   const {rname,rpassword,Mdate,dep,rs,rd} = req.body;
-  console.log(rname,rpassword,Mdate,dep,rs,rd);
-  
-    connection.query(`UPDATE router SET rname =?, rpassword =?
-     ,malfunction_date =?,dep_install =?, rep_status =? ,rep_date = ?  WHERE rname = ?`,
-    [rname,rpassword,Mdate,dep,rs,rd,req.params.id],
+  const query = `UPDATE router SET rname ='${rname}', rpassword ='${rpassword}',dep_install ='${dep}' 
+    WHERE rname = '${req.params.id}'`
+    connection.query(query,
      function (err, result) {
       if (err) throw err;
       res.render('viewrouter')
@@ -85,8 +76,9 @@ router.post('/', function(req, res, next) {
   var depart = req.body.department;
  
     // form data of routers added to database
-  connection.query(`INSERT INTO router (rname,rpassword,Date_of_install,dep_install) 
-  VALUES (?,?,?,?)`,[rname,password,date,depart], function(err, result) {
+    const query = `INSERT INTO router(rname,rpassword,date_of_install,dep_install) 
+    VALUES ('${rname}','${password}','${date}','${depart}')`
+  connection.query(query,function(err, result) {
     if (err) {
         res.render('routerform',{msg:'Router with entered name entered is previously deployed',color:'color:#630000'});
     }else { 

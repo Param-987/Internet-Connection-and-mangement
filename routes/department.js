@@ -1,8 +1,6 @@
 const express = require('express')
 const app = express()
 const bodyParser = require('body-parser');
-const axios = require('axios')
-const mysql = require('mysql')
 const cors = require('cors');
 const connection = require('./db_service')  // database connection
 const  http = require('http');
@@ -17,24 +15,24 @@ app.use(express.static('./public'))
 
 router.get('/',(req,res)=>{
     res.render('department',{msg:''})
-    // console.log(req.cookies.Auth);
 })
 router.get('/data',(req,res)=>{
     connection.query(`SELECT * FROM department`,(err,result,fields)=>{
-        if(err) res.send(res.sqlMessage)
-        if(req.cookies.Auth) return res.setHeader('ctrl',true).send(result);
-        else return res.setHeader('ctrl',false).send(result);
+        if(err) res.send(res.sqlMessage) 
+        
+        if(req.cookies.Auth) return res.setHeader('ctrl',true).send(result.rows);
+        else return res.setHeader('ctrl',false).send(result.rows);
     })
 })
 router.post('/data',(req,res)=>{
-    connection.query(`INSERT INTO department values (?)`,[req.body.dep],(err,result)=>{
+    connection.query(`INSERT INTO department(dep_name) values('${req.body.dep}')`,(err,result)=>{
         if(err) return err.sqlMessage
-        res.send('Hello');
+        res.status(200).send('Hello');
     })
 })
 router.get('/delete/:id',(req,res)=>{
-    connection.query(`DELETE FROM department where dep_name = ? `,[req.params.id],(err,result)=>{
-        if(err)return res.render('department',{msg:'The Deaprtment is under control an admin and a router is  installed in it . First remove them '})
+    connection.query(`DELETE FROM department where dep_name = '${req.params.id}' `,(err,result)=>{
+        if(err) return res.render('department',{msg:'The Deaprtment is under control an admin and a router is  installed in it . First remove them '})
         res.render('department',{msg:''});
     })
 })

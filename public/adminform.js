@@ -1,11 +1,9 @@
 // const { default: axios } = require("axios");
 
-window.addEventListener('load', (event) => {
-    axios.get('http://localhost:1337/admin/dep')
+    axios.get('/admin/dep')
      .then((resp)=>display(resp)).catch((err)=>{
        console.log('cant fetch to show');
      })
-    })
 
 function display(resp){
   var z= '<table>'

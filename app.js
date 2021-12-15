@@ -3,7 +3,7 @@ const app = express();
 const bodyParser = require("body-parser");
 const cookieParser = require("cookie-parser"); 
 const axios = require("axios");
-const mysql = require("mysql");
+const client = require("pg");
 const cors = require("cors");
 const connection = require("./routes/db_service"); // database connection 1
 const http = require("http");
@@ -50,7 +50,8 @@ app.use("/admin", admin); // use admin router
 app.get('*',(req,res)=>{
     res.status(404).send('<h1> ERROR 404!!!! <br>The Page Not found</h1>');
   })
-app.listen(1337, () => {
-  console.log("server listen at port 1337");
+
+app.listen(3000, () => {
+  console.log("server listen at port 3000");
 });
   

@@ -1,18 +1,16 @@
 var response;
-window.addEventListener('load', (event) => {
-    axios.get('http://localhost:1337/bbc/get')
+    axios.get('/bbc/get')
      .then((resp)=>{ response  = resp;
        work(resp.data)
      }).catch((err)=>{
        console.log('cant fetch to show');
      })
-    })
 
 function work(res){
     var iname = document.querySelector('#ispname');
     var z = ''
     for( x in res){
-          z+= `<option value=${res[x].Id}>${res[x].Cname}</option>`
+          z+= `<option value=${res[x].id}>${res[x].cname}</option>`
     }
     iname.innerHTML = z;
 }
@@ -24,15 +22,13 @@ function func()
   var dur = document.querySelector('#dur').value
   for (x in response.data)
   {
-    if(response.data[x].Id== isp){
-      console.log(response.data[x]);
+    if(response.data[x].id== isp){
       if(package === 'monthly') total = response.data[x].monthly_cost * dur + response.data[x].setup_cost; 
       else if(package === 'annual') total = response.data[x].annual_cost * dur + response.data[x].setup_cost; 
       break;
     }  
     
   }
-  console.log(total);
   document.querySelector('#cost').value = `₹${total}`;
 }
 

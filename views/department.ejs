@@ -68,7 +68,7 @@
 
   <script>
     window.addEventListener('load', () => {
-      axios.get('http://localhost:1337/department/data')
+      axios.get('/department/data')
         .then((response) => display(response))
         .catch((err) => console.log(err))
     })
@@ -107,9 +107,9 @@
     function pia(){
         var t = document.querySelector('#dep').value;
         if(!t) return ;
-        axios.post('http://localhost:1337/department/data',{
+        axios.post('/department/data',{
             dep:t
-        }).then((resp)=> window.location.replace('http://localhost:1337/department'))
+        }).then((resp)=> window.location.replace('/department'))
         .catch((err)=> console.log(err,'Pia'))
     }
   </script>

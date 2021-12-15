@@ -1,8 +1,6 @@
 const express = require('express')
 const app = express()
 const bodyParser = require('body-parser');
-const axios = require('axios')
-const mysql = require('mysql')
 const cors = require('cors');
 const  http = require('http');
 const path = require('path');
@@ -17,10 +15,10 @@ router.get('/',(req,res)=>{
     res.render('addbbc',{msg:''})
   });
   
-  router.get('/get',(req,res)=>{
+  router.get('/get',async(req,res)=>{
     connection.query(`SELECT * FROM isps`,(err,result,field)=>{
       if(err) throw err
-      res.send(result);
+      res.send(result.rows);
     })
   })
 
@@ -29,11 +27,11 @@ router.get('/',(req,res)=>{
   })
 
   router.get('/data',(req,res)=>{
-    var sql = `SELECT Cname,Offer,Dspeed, setup_cost ,monthly_cost ,annual_cost ,
-    date_from ,date_to,package,cost,duration FROM isps INNER JOIN isp_selected WHERE isp_selected.id = isps.Id ORDER BY date_from DESC;`
+    var sql = `SELECT cname,offer,dspeed, setup_cost ,monthly_cost ,annual_cost ,
+    date_from ,date_to,package,cost,duration FROM isps INNER JOIN isp_selected on isp_selected.id = isps.id ORDER BY date_from DESC;`
     connection.query(sql, function (err, result) {
       if (err) throw err;
-      res.send(result);
+      res.status(200).send(result.rows);
     });
   })
   
@@ -52,10 +50,9 @@ router.post('/buy',(req,res)=>{
     }}
     else year +=dur;
     var date_to = `${year}-${month}-${Number(date_from.split('-')[2])}`
-    connection.query(`INSERT INTO isp_selected (id,date_from,date_to,package,cost,duration)
-     VALUES (?,?,?,?,?,?)`,
-    [id,date_from,date_to,package,cost,dur],
-     (err, result)=> {
+    const query = `INSERT INTO isp_selected (id,date_from,date_to,package,cost,duration)
+    VALUES (${id},'${date_from}','${date_to}','${package}','${cost}',${dur})`
+    connection.query(query,(err, result)=> {
         if (err) throw err;
       });
     res.render('addbbc',{msg:'Your Request is recieved...'});

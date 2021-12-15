@@ -12,7 +12,6 @@
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <title>AdminForm</title>
     <!-- <link rel="stylesheet" href="/adminform.css"> -->
-    <script src="/adminform.js"></script>
     <style>
         body {
             background-image: url(/photos/ass3.jpg);
@@ -33,11 +32,11 @@
           width:120%;
         }
         td{padding:10px;}
-    </style>
+        </style>
 </head>
 
 <body>
-
+    
     <div class="outer">
         <div class="heading">
             <h1>Add a new admin </h1>
@@ -48,49 +47,50 @@
             <div class="input-group mb-3">
                 <span class="input-group-text" >Name:</span>
                 <input type="text" class="form-control" aria-label="Username" aria-describedby="basic-addon1"
-                    name="fname" id="fname" required placeholder="Full Name">
+                name="fname" id="fname" required placeholder="Full Name">
             </div>
             <div class="input-group mb-3">
                 <span class="input-group-text">Email Id:</span>
                 <input type="text" class="form-control" aria-label="Username" aria-describedby="basic-addon1"
-                    name="email" id="email" required placeholder="Email">
+                name="email" id="email" required placeholder="Email">
             </div>
-
-
+            
+            
             <div class="input-group mb-3">
                 <span class="input-group-text">Password to login:</span>
                 <input type="password" class="form-control" aria-label="Username" aria-describedby="basic-addon1"
-                    name="pass" id="password" required placeholder="Password">
+                name="pass" id="password" required placeholder="Password">
             </div>
-
-
+            
+            
             <div class="input-group mb-3">
                 <span class="input-group-text">Admin priviledged on :</span>
                 <input type="date" class="form-control" aria-label="Username" aria-describedby="basic-addon1"
-                    name="date" id="date" required>
+                name="date" id="date" required>
             </div>
-
+            
             <div class="input-group mb-3">
                 <span class="input-group-text">Phone No:</span>
                 <input type="tel" class="form-control" aria-label="Username" aria-describedby="basic-addon1"
-                    name="phone" id="phone-no" required>
+                name="phone" id="phone-no" required>
             </div>
-
+            
             <div class="input-group mb-3" >
                 <span class="input-group-text" style="margin-left:0;">Departments    to control:</span>
                 
                 <div id="labeled"></div>
             </div>
-                
-
+            
+            
             <div>
                 <button type="submit" class="btn btn-primary" style="float: right">Submit</button>
             </div>
-
+            
         </form>
-
-
-
-</body>
+        
+        
+        
+        <script src="/adminform.js"></script>
+    </body>
 
 </html>

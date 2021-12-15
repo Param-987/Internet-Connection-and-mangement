@@ -1,16 +1,16 @@
-const mysql = require('mysql')
-let instance = null;
-var connection = mysql.createConnection({
+const {Client} = require('pg')
+const connection = new Client({
   host: "localhost",
-  user: 'root',
-  password:'',
-  database:"project",
-  // insecureAuth : true
-});
+  port:1337,
+  user: 'postgres',
+  password:'123456',
+  database:"postgres",
+})
 
+ 
 
 connection.connect((err)=> {
-  if (err) console.log('problem in connection');
+  if (err) console.log("Problem in connection");
   else console.log("Connected!");
 });
 
