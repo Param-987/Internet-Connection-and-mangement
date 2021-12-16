@@ -20,6 +20,7 @@ const department = require("./routes/department")
 const user = require('./routes/user')
 app.set("view engine", "ejs");  
     
+require('dotenv').config();
 app.use(cors({ origin: "*" }));
 app.use(express.json());
 app.use(cookieParser()); 
@@ -51,7 +52,8 @@ app.get('*',(req,res)=>{
     res.status(404).send('<h1> ERROR 404!!!! <br>The Page Not found</h1>');
   })
 
-app.listen(3000, () => {
-  console.log("server listen at port 3000");
+ const port = process.env.PORT|| 3000; 
+app.listen(port, () => {
+  console.log(`server listen at port ${port}`);
 });
   
